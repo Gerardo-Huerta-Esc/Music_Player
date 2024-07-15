@@ -1,0 +1,38 @@
+# Entornos virtuales de Python
+venv/
+env/
+
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos de configuración de VS Code
+.vscode/
+
+# Archivos de logs
+*.log
+
+# Archivos de entorno
+.env
+
+# Dependencias instaladas
+*.egg-info/
+dist/
+build/
+
+# Archivos específicos de macOS
+.DS_Store
+
+# Archivos de cobertura de pruebas
+.coverage
+htmlcov/
+.tox/
+
+# Configuraciones de editores
+.idea/
+*.swp
+*.swo
+
+# Dependencias de paquetes
+node_modules/
