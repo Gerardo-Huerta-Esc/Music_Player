@@ -6,6 +6,8 @@ from PyQt6.QtGui import QFont, QPixmap
 
 from registro import RegistrarUsuarioView
 
+from main import MainWindow
+
 class Login(QWidget):
     def __init__(self):
         super().__init__()
@@ -67,12 +69,48 @@ class Login(QWidget):
             self.password_input.setEchoMode(QLineEdit.EchoMode.Password)
 
     def iniciar_mainview(self):
-        pass
+        users = []
+        user_path = 'usuarios.txt'
+        try:
+            with open(user_path,'r') as f:
+                for linea in f:
+                    users.append(linea.strip("\n")) # strip elimina el salto de linea
+            login_information = f"{self.user_input.text()},{self.password_input.text()}"
+
+            if login_information in users:
+                QMessageBox.information(self,"Inicio de Sesion",
+                "Inicio de Sesión Exitoso",
+                QMessageBox.StandardButton.Ok,
+                QMessageBox.StandardButton.Ok)
+                self.is_logged = True
+                self.close()
+                self.open_main_window()
+
+            else:
+                QMessageBox.warning(self,"Error Message",
+                "Credenciales incorrectas",
+                QMessageBox.StandardButton.Close,
+                QMessageBox.StandardButton.Close)
+
+        except FileNotFoundError as e:
+            QMessageBox.warning(self,"Error Message",
+            "Base de datos de usuario no encontada: {e}",
+            QMessageBox.StandardButton.Close,
+            QMessageBox.StandardButton.Close)
+
+        except FileNotFoundError as e:
+            QMessageBox.warning(self,"Error Message",
+            "Error en el servidor: {e}",
+            QMessageBox.StandardButton.Close,
+            QMessageBox.StandardButton.Close)
 
     def registrar_usuario(self):
         self.new_user_form = RegistrarUsuarioView() 
         self.new_user_form.show()
 
+    def open_main_window(self):
+        self.main_window = MainWindow() # nueva interfaz
+        self.main_window.show()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

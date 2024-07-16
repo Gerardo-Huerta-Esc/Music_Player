@@ -86,7 +86,18 @@ class RegistrarUsuarioView(QDialog):
             QMessageBox.StandardButton.Close) 
         else:
             try:
-                
+                with open(user_path,'a+') as f:
+                    f.write(f'{usuario},{password1}\n')
+                QMessageBox.information(self,'Creación exitosa',
+                'Usuario creado correctamente',
+                QMessageBox.StandardButton.Ok,
+                QMessageBox.StandardButton.Ok)
+                self.close()
+            except FileNotFoundError as e:
+                QMessageBox.warning(self,'Error',
+                'La base de datos del usuario no existe: {e}',
+                QMessageBox.StandardButton.Close,
+                QMessageBox.StandardButton.Close) 
 
 
 
