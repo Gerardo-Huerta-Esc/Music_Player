@@ -19,3 +19,9 @@
   - **Dibujo y Renderizado**: Controla el dibujo y el renderizado de los widgets en la pantalla.
 
 - **Creación de Nuevos Widgets**: Puedes crear tus propios widgets personalizados heredando de `QWidget` o de clases derivadas como `QFrame`, `QPushButton`, etc.
+
+#### **`sys.exit(app.exec())`**
+
+- **`app.exec()`**: Este método inicia el bucle de eventos principal de la aplicación PyQt. Es necesario para que la aplicación comience a procesar eventos, como clics de ratón y teclas del teclado, y para que la ventana aparezca y responda a interacciones.
+- **`sys.exit()`**: Envuelve la llamada a `app.exec()`. Cuando el bucle de eventos principal termina (por ejemplo, cuando cierras la ventana), `app.exec()` devuelve un código de salida. `sys.exit()` se asegura de que el programa finalice correctamente y pase ese código de salida al sistema operativo.
+

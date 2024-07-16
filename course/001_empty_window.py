@@ -6,7 +6,7 @@ from PyQt6.QtWidgets import QApplication, QWidget
 class VentanaVacía(QWidget):
     def __init__(self):
         super().__init__()
-        self.inicializarUI()
+        self.inicializarUI() # se ejecuta el método inmediatamente después de la inicialización el objeto
 
     def inicializarUI(self):
         self.setGeometry(100,100,250,250) #y,x,ancho,largo
@@ -18,6 +18,6 @@ class VentanaVacía(QWidget):
 
 
 if __name__=='__main__':
-    app = QApplication(sys.argv) # permite pasarle parámetros por consola
+    app = QApplication(sys.argv) # sys.argv permite pasarle parámetros por consola
     ventana = VentanaVacía() # instancia de clase
     sys.exit(app.exec())
