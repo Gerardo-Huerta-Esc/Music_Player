@@ -3,7 +3,9 @@ from PyQt6.QtWidgets import (QApplication,QLabel,QWidget,QLineEdit,QPushButton,
 QMessageBox,QCheckBox)
 
 from PyQt6.QtGui import QFont, QPixmap
+
 from registro import RegistrarUsuarioView
+
 class Login(QWidget):
     def __init__(self):
         super().__init__()
@@ -12,7 +14,7 @@ class Login(QWidget):
     def inicializar_ui(self):
         self.setGeometry(100,100,350,250)
         self.setWindowTitle("Login") # generate the tittle
-        self.generar_formulario() # initiali<e method .generar_formulario()
+        self.generar_formulario() # initialize method .generar_formulario()
         self.show()
     
     def generar_formulario(self):
@@ -35,28 +37,28 @@ class Login(QWidget):
 
         self.password_input = QLineEdit(self)
         self.password_input.resize(250,24)
-        self.password_input.move(90,82)
+        self.password_input.move(90,82) 
         self.password_input.setEchoMode(QLineEdit.EchoMode.Password) # la contraseña no está vista 
         
-        # see the password
+        # window to see the password
         self.check_view_password = QCheckBox(self)
         self.check_view_password.setText("Ver Contraseña")
         self.check_view_password.move(90,107)
-        self.check_view_password.toggled.connect(self.mostrar_contrasena) ## ??
+        self.check_view_password.toggled.connect(self.mostrar_contrasena) 
         
         # login button 
         login_button = QPushButton(self)
         login_button.setText('Login')
         login_button.resize(320,34)
         login_button.move(20,140)
-        login_button.clicked.connect(self.iniciar_mainview)
+        login_button.clicked.connect(self.iniciar_mainview) 
         
         # registry button
         login_button = QPushButton(self)
         login_button.setText('Registrarte')
         login_button.resize(320,34)
         login_button.move(20,180)
-        login_button.clicked.connect(self.registrar_usuario)
+        login_button.clicked.connect(self.registrar_usuario) 
     
     def mostrar_contrasena(self,clicked):
         if clicked:
@@ -68,7 +70,7 @@ class Login(QWidget):
         pass
 
     def registrar_usuario(self):
-        self.new_user_form = RegistrarUsuarioView() # dice que esta esta mal
+        self.new_user_form = RegistrarUsuarioView() 
         self.new_user_form.show()
 
 

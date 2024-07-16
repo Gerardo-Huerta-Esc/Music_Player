@@ -2,15 +2,21 @@ import sys
 from PyQt6.QtWidgets import (QDialog,QLabel,QLineEdit,QPushButton,
 QMessageBox)
 from PyQt6.QtGui import QFont
+
 class RegistrarUsuarioView(QDialog):
     def __init__(self):
         super().__init__()
+        self.setModal(True)
         self.generar_formulario()
 
+
     def generar_formulario(self):
+
+        # box
         self.setGeometry(100,100,350,250)
         self.setWindowTitle("Registration Window")
 
+        # user field
         user_label = QLabel(self)
         user_label.setText("Usuario")
         user_label.setFont(QFont('Arial',10))
@@ -20,6 +26,7 @@ class RegistrarUsuarioView(QDialog):
         self.user_input.resize(250,24)
         self.user_input.move(90,40)
 
+        # password 1 field
         password_1_label = QLabel(self)
         password_1_label.setText("Password")
         password_1_label.setFont(QFont('Arial',10))
@@ -31,6 +38,7 @@ class RegistrarUsuarioView(QDialog):
         self.password_1_input.setEchoMode(QLineEdit.EchoMode.Password)
 
 
+        # password 2 field
         password_2_label = QLabel(self)
         password_2_label.setText("Password")
         password_2_label.setFont(QFont('Arial',10))
@@ -40,3 +48,56 @@ class RegistrarUsuarioView(QDialog):
         self.password_2_input.resize(250,24)
         self.password_2_input.move(90,100)
         self.password_2_input.setEchoMode(QLineEdit.EchoMode.Password)
+
+
+        # crear
+        create_button = QPushButton(self)
+        create_button.setText("Crear")
+        create_button.resize(150,32)
+        create_button.move(20,170)
+        create_button.clicked.connect(self.crear_usuario)
+
+        # Cancelar
+        cancel_button = QPushButton(self)
+        cancel_button.setText("Cancelar")
+        cancel_button.resize(150,32)
+        cancel_button.move(180,170)
+        cancel_button.clicked.connect(self.cancelar_creacion)
+
+    def cancelar_creacion(self):
+        self.close()
+
+    def crear_usuario(self):
+        user_path = 'usuarios.txt'
+        usuario = self.user_input.text()
+        password1 = self.password_1_input.text()
+        password2 = self.password_2_input.text()
+
+        if password1 == '' or password2 == '' or usuario == '':
+            QMessageBox.warning(self,'Error',
+            'Por favor ingrese datos válidos',
+            QMessageBox.StandardButton.Close,
+            QMessageBox.StandardButton.Close) 
+
+        elif password1 != password2:
+            QMessageBox.warning(self,'Error',
+            'Las contraseñas no son iguales',
+            QMessageBox.StandardButton.Close,
+            QMessageBox.StandardButton.Close) 
+        else:
+            try:
+                
+
+
+
+
+
+
+
+
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    form = RegistrarUsuarioView()
+    form.exec()
